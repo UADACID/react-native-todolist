@@ -5,17 +5,18 @@ import {
   View,
   Text,
   StyleSheet,
+  ScrollView
 } from 'react-native';
 import List from './List'
 
 const Lists = (props) => (
-  <View style={styles.container}>
+  <ScrollView style={styles.container}>
     {props.lists.map((list,index)=>{
       return (
           <List key={index} list={list} onPress={props.onPress} index={index}/>
       )
     })}
-  </View>
+  </ScrollView>
 );
 
 export default Lists;

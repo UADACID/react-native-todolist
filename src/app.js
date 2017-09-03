@@ -5,12 +5,15 @@ import {
   View,
   Text,
   StyleSheet,
+  Dimensions,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
 import Lists from '../component/Lists'
 import InputForm from '../component/InputForm'
 import Button from '../component/Button'
+
+const {height,width} = Dimensions.get('window')
 
 export default class App extends Component {
 
@@ -49,12 +52,16 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Todo List :</Text>
-        <InputForm
-          onChangeText={(text)=>this.handleSetText(text)}
-          value={this.state.text}
-        />
-        <Button onPress={()=>this.handleAddText()}/>
+        <Text style={styles.text}>Todo List :</Text>
+        <View style={styles.InputContainer}>
+          <InputForm
+            style={{width:width-50}}
+            onChangeText={(text)=>this.handleSetText(text)}
+            value={this.state.text}
+            placeholder='type new task here . . . '
+          />
+          <Button onPress={()=>this.handleAddText()}/>
+        </View>
         <Lists lists={this.state.lists} onPress={this.handleRemove}/>
       </View>
     );
@@ -66,4 +73,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:'#FFFFFF'
   },
+  text:{
+    alignSelf:'center',
+    fontSize:30,
+    fontWeight:'bold'
+  },
+  InputContainer:{
+    flexDirection:'row'
+  }
 });

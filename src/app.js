@@ -17,7 +17,7 @@ import Button from '../component/Button'
 const {height,width} = Dimensions.get('window')
 
 export default class App extends Component {
-
+  /*inisiasi variabel state */
   state = {
     text  :'',
     lists : [
@@ -26,7 +26,8 @@ export default class App extends Component {
     ]
   }
 
-  handleAddText(){
+  /*membuat method untuk aksi menambah task */
+  handleAddTask(){
     if (this.state.text == '') {
       return;
     }
@@ -38,6 +39,7 @@ export default class App extends Component {
       })
   }
 
+  /*membuat method untuk aksi menghapus task dengan parameter index */
   handleRemove = (index) => {
     const lists = [...this.state.lists].filter((list,indexList)=>{
       return indexList != index
@@ -47,6 +49,7 @@ export default class App extends Component {
     })
   }
 
+  /*membuat method untuk aksi mengisi nilai dari state 'text' */
   handleSetText = (text) => {
     this.setState({
       text
@@ -64,7 +67,7 @@ export default class App extends Component {
             value={this.state.text}
             placeholder='type new task here . . . '
           />
-          <Button onPress={()=>this.handleAddText()}/>
+          <Button onPress={()=>this.handleAddTask()}/>
         </View>
         <Lists lists={this.state.lists} onPress={this.handleRemove}/>
       </View>

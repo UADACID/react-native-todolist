@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Dimensions,
   TextInput,
+  Platform,
   TouchableOpacity,
 } from 'react-native';
 import Lists from '../component/Lists'
@@ -26,6 +27,9 @@ export default class App extends Component {
   }
 
   handleAddText(){
+    if (this.state.text == '') {
+      return;
+    }
     const lists = [...this.state.lists]
     lists.push(this.state.text)
     this.setState({
@@ -55,7 +59,7 @@ export default class App extends Component {
         <Text style={styles.text}>Todo List :</Text>
         <View style={styles.InputContainer}>
           <InputForm
-            style={{width:width-50}}
+            style={styles.form}
             onChangeText={(text)=>this.handleSetText(text)}
             value={this.state.text}
             placeholder='type new task here . . . '
@@ -71,7 +75,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#FFFFFF'
+    backgroundColor:'#FFFFFF',
+    marginTop:Platform.OS == 'ios' ? 20 : 0,
   },
   text:{
     alignSelf:'center',
@@ -79,6 +84,14 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   InputContainer:{
-    flexDirection:'row'
+    flexDirection:'row',
+    marginBottom:20
+  },
+  form:{
+    width:width-70,
+    borderWidth:Platform.OS == 'ios' ? 1 : 0,
+    margin:5,
+    borderRadius:5,
+    borderColor:'gray'
   }
 });

@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 
 const Button = (props) => (
-  <View style={styles.container}>
-    <TouchableOpacity onPress={props.onPress}>
+  <View>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <Text style={styles.text}>Add</Text>
     </TouchableOpacity>
   </View>
